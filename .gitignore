@@ -128,6 +128,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+student-venv/
 
 # Spyder project settings
 .spyderproject
