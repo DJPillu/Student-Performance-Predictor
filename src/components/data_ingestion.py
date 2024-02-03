@@ -6,6 +6,8 @@ from  src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -54,5 +56,9 @@ if __name__ == "__main__":
     train, test = data.initiate_data_ingestion()
     
     tranform = DataTransformation()
-    tranform.initiate_data_transformation(train, test)
+    array_train, array_test, _ = tranform.initiate_data_transformation(train, test)
     logging.info("Preprocessing complete")
+    
+    trainer = ModelTrainer()
+    score = trainer.train(array_train, array_test)
+    print(score)
